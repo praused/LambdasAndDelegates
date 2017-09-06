@@ -12,11 +12,15 @@ namespace LambdasAndDelegates
     {
         static void Main(string[] args)
         {
-            BizRulesDelegate addDel = (x, y) => x + y;
-            BizRulesDelegate multiplyDel = (x, y) => x * y;
-
             var data = new ProcessData();
-            data.Process(2, 3, multiplyDel);
+            BizRulesDelegate addDel = (x, y) => x + y;
+            BizRulesDelegate multiplyDel = (x, y) => x * y;            
+            //data.Process(2, 3, multiplyDel);
+
+            Action<int, int> myAction = (x, y) => Console.WriteLine(x + y);
+            Action<int, int> myMultiplyAction = (x, y) => Console.WriteLine(x*y);
+            //data.ProcessAction(2, 3, myAction);
+            data.ProcessAction(2, 3, myAction);
 
             var worker = new Worker();
             worker.WorkPerformed += (s, e) =>
